@@ -1,0 +1,172 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Entreprise index{% endblock %}
+
+{% block body %}
+<!-- Start Working With Us Area -->
+    <div class="working-with-us-area gray-bg">
+        <div class="container"> 
+            <div class="row">
+                <div class="col-md-6 col-12 text-center d-flex align-items-center">
+                    <div class="hire-us-content">
+                        <div class="section-title">
+                            <h4>Working With Us</h4>
+                        </div>
+                        <p>We’ve completed more than <span>100+</span>project for our am azing clients, If you interested?</p>
+                        <a href="#" class="btn hire-us-btn">Hire Us</a>
+                    </div>
+                </div>
+                <div class="col-md-6 d-none d-md-block">
+                    <div class="hire-us-img">
+                        <img src="/assets/img/hire_us.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Working With Us Area -->
+
+     <!-- Start Icon Box Area -->
+ <hr>
+    <div class="icon-box-area" id="feature">
+        <div class="container">
+            <div class="col-12 text-center align-items-center container">
+                <div class="jumbotron">
+                
+                {{ form_start(form) }}
+                <div class="section-title">
+                    <h4 style="color: #4272d7"> Rechercher des Entreprises</h4>
+                </div>
+                <br>
+                <div class="row">
+                    
+                    <div class="col">{{ form_row(form.libelle)}}</div>
+                    
+                    <div class="col">{{ form_row(form.codeIcbGeneral)}}</div>
+                    
+                    <div class="col">{{ form_row(form.secteurGeneral)}}</div>
+
+                    <div class="col">{{ form_row(form.codeICB)}}</div>
+                </div>
+                <br>
+                <div class="row"> 
+                    
+                    <div class="col">{{ form_row(form.secteur)}}</div>
+                    
+                    <div class="col">{{ form_row(form.codeISIN)}}</div>
+
+                    <div class="col">{{ form_row(form.cbAdmise)}}</div>
+                    
+                    <div class="col">{{ form_row(form.cbTotale)}}</div>
+                    
+                </div>
+                <br>
+                <div class="row"> 
+                    
+                    <div class="col">{{ form_row(form.score)}}</div>
+                    
+                    <div class="col">{{ form_row(form.coursAu)}}</div>
+
+                    <div class="col">{{ form_row(form.coursActuel)}}</div>
+                    
+                    <div class="col">{{ form_row(form.per)}}</div>
+                    
+                </div>
+                <br>
+                <div class="row"> 
+                    
+                    <div class="col">{{ form_row(form.pbv)}}</div>
+                    
+                    <div class="col">{{ form_row(form.divYield)}}</div>
+
+                    <div class="col">{{ form_row(form.performance)}}</div>
+                    
+                    <div class="col">{{ form_row(form.option)}}</div>
+                    
+                </div>
+                <br>
+                <button class="btn">  Rechercher &nbsp;<i class="fa fa-search" aria-hidden="true"></i></button>
+                {{ form_end(form) }}
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="col-12 text-center align-items-center container">
+    <div class="jumbotron">
+    <div class="section-title">
+        <center><h1>Gérer les Entreprises</h1></center>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Code ICB General</th>
+                <th>Secteur General</th>
+                <th>Code ICB</th>
+                <th>Secteur</th>
+                <th>Code ISIN</th>
+                <th>Libelle</th>
+                <th>Score Liquidité</th>
+                <th>CB admise</th>
+                <th>CB totale</th>
+                <th>Cours Au</th>
+                <th>Cours Actuel</th>
+                <th>Date du Cours</th>
+                <th>PER 2020</th>
+                <th>PBV</th>
+                <th>Div Yield</th>
+                <th>Performance</th>
+                <th>Option</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for entreprise in entreprises %}
+            <tr>
+                <td>{{ entreprise.id }}</td>
+                <td>{{ entreprise.codeIcbGeneral }}</td>
+                <td>{{ entreprise.secteurGeneral }}</td>
+                <td>{{ entreprise.codeICB }}</td>
+                <td>{{ entreprise.secteur }}</td>
+                <td>{{ entreprise.codeISIN }}</td>
+                <td>{{ entreprise.libelle }}</td>
+                <td>{{ entreprise.score }}</td>
+                <td>{{ entreprise.cbAdmise }}</td>
+                <td>{{ entreprise.cbTotale }}</td>
+                <td>{{ entreprise.coursAu }}</td>
+                <td>{{ entreprise.coursActuel }}</td>
+                <td>{{ entreprise.coursAt ? entreprise.coursAt|date('Y-m-d') : '' }}</td>
+                <td>{{ entreprise.per }}</td>
+                <td>{{ entreprise.pbv }}</td>
+                <td>{{ entreprise.divYield }}</td>
+                <td>{{ entreprise.performance }}</td>
+                <td>{{ entreprise.option }}</td>
+                <td>
+                    <a class="btn-outline-primary" href="{{ path('entreprise_show', {'id': entreprise.id}) }}"><b>Afficher</b></a>
+                </td>
+                <td>
+                    <a class="btn-outline-primary" href="{{ path('entreprise_edit', {'id': entreprise.id}) }}"><b>Editer</b></a>
+                </td>
+                <td>
+                    {{ include('entreprise/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="14">Pas d'entreprises pour le moment.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <center><a class="btn" href="{{ path('entreprise_new') }}">Créer une nouvelle Entreprise</a></center>
+        </div>
+</div>
+<hr>
+<br>
+
+
+{% endblock %}

@@ -1,0 +1,29 @@
+<div class="col-5 text-center align-items-center container">
+    <div class="jumbotron">
+{{ form_start(form) }}
+
+    <label>Nom :</label>
+    <div class="col">{{ form_row(form.nom)}}</div>
+    <label>Prénom :</label>
+    <div class="col">{{ form_row(form.prenom)}}</div>
+    <label>Email :</label>
+    <div class="col">{{ form_row(form.email)}}</div>
+    <label>Téléphone :</label>
+    <div class="col">{{ form_row(form.tel)}}</div>
+    <label>Mot de passe :</label>
+    <div class="col">{{ form_row(form.password)}}</div>
+    <label>Rôle :</label>
+    <div class="col">{{ form_row(form.role)}}</div>
+
+    <br>
+
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+
+{{ form_end(form) }}
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('utilisateur_index') }}">Retour à la liste</a>
+    {% else %}
+    <a href="{{ path('home') }}">Retour à la liste</a>
+    {% endif %}
+     </div>
+</div>

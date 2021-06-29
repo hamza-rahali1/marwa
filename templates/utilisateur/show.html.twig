@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateur{% endblock %}
+
+{% block body %}
+    <!-- Start Latest Project Area -->
+    <div class="jumbotron " style="background-color:#4272d7">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-70">
+                    <div class="section-title">
+                        <br>
+<div class="col-12 text-center align-items-center container">
+    <div class="jumbotron">
+    <h1>{{ utilisateur.nom }} {{ utilisateur.prenom }}</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ utilisateur.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ utilisateur.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ utilisateur.email }}</td>
+            </tr>
+            <tr>
+                <th>Tel</th>
+                <td>{{ utilisateur.tel }}</td>
+            </tr>
+            <tr>
+                <th>Role</th>
+                <td>{{ utilisateur.role }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a class="btn" href="{{ path('utilisateur_edit', {'id': utilisateur.id}) }}">Editer</a>
+
+    <br>
+    
+    <a href="{{ path('utilisateur_index') }}">Retour à la liste</a>
+
+           </div>
+                </div>
+
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

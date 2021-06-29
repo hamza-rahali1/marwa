@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}OPCVM index{% endblock %}
+
+{% block body %}
+<!-- Start Working With Us Area -->
+    <div class="working-with-us-area gray-bg">
+        <div class="container"> 
+            <div class="row">
+                <div class="col-md-6 col-12 text-center d-flex align-items-center">
+                    <div class="hire-us-content">
+                        <div class="section-title">
+                            <h4>Working With Us</h4>
+                        </div>
+                        <p>We’ve completed more than <span>100+</span>project for our am azing clients, If you interested?</p>
+                        <a href="#" class="btn hire-us-btn">Hire Us</a>
+                    </div>
+                </div>
+                <div class="col-md-6 d-none d-md-block">
+                    <div class="hire-us-img">
+                        <img src="/assets/img/hire_us.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Working With Us Area -->
+
+         <!-- Start Icon Box Area -->
+ <hr>
+    <div class="icon-box-area" id="feature">
+        <div class="container">
+            <div class="col-12 text-center align-items-center container">
+                <div class="jumbotron">
+                
+                {{ form_start(form) }}
+                <div class="section-title">
+                    <h4 style="color: #4272d7"> Rechercher des Entreprises</h4>
+                </div>
+                <br>
+                <div class="row">
+                    
+                    <div class="col">{{ form_row(form.libelle)}}</div>
+                    
+                    <div class="col">{{ form_row(form.societe)}}</div>
+                    
+                    <div class="col">{{ form_row(form.categorie)}}</div>
+
+                    <div class="col">{{ form_row(form.type)}}</div>
+
+                    <div class="col">{{ form_row(form.orientation)}}</div>
+                </div>
+                <br>
+                <div class="row"> 
+                    
+                    <div class="col">{{ form_row(form.vlF)}}</div>
+
+                    <div class="col">{{ form_row(form.vlAu)}}</div>
+                    
+                    <div class="col">{{ form_row(form.an)}}</div>
+
+                    <div class="col">{{ form_row(form.divvv)}}</div>
+                    
+                    <div class="col">{{ form_row(form.perf)}}</div>
+                    
+                </div>
+                <br>
+                <button class="btn">  Rechercher &nbsp;<i class="fa fa-search" aria-hidden="true"></i></button>
+
+                {{ form_end(form) }}
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+<br>
+<div class="col-12 text-center align-items-center container">
+    <div class="jumbotron">
+    <div class="section-title">
+        <center><h1>Gérer OPCVM</h1></center>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Libellé</th>
+                <th>Société de gestion</th>
+                <th>Catégorie</th>
+                <th>Type</th>
+                <th>Orientation</th>
+                <th>Vl Fin Année</th>
+                <th>Fin d'année</th>
+                <th>VL</th>
+                <th>Date VL</th>
+                <th>AN</th>
+                <th>Div</th>
+                <th>Performance YTD</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for o_p_c_v_m in o_p_c_v_ms %}
+            <tr>
+                <td>{{ o_p_c_v_m.id }}</td>
+                <td>{{ o_p_c_v_m.libelle }}</td>
+                <td>{{ o_p_c_v_m.societe }}</td>
+                <td>{{ o_p_c_v_m.categorie }}</td>
+                <td>{{ o_p_c_v_m.type }}</td>
+                <td>{{ o_p_c_v_m.orientation }}</td>
+                <td>{{ o_p_c_v_m.vlF }}</td>
+                <td>{{ o_p_c_v_m.dateF ? o_p_c_v_m.dateF|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ o_p_c_v_m.vlAu }}</td>
+                <td>{{ o_p_c_v_m.dateAu ? o_p_c_v_m.dateAu|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ o_p_c_v_m.an }}</td>
+                <td>{{ o_p_c_v_m.divvv }}</td>
+                <td>{{ o_p_c_v_m.perf }}</td>
+                <td>
+                    <a class="btn-outline-primary" href="{{ path('o_p_c_v_m_show', {'id': o_p_c_v_m.id}) }}">Afficher</a>
+                </td>
+                <td>
+                    <a class="btn-outline-primary" href="{{ path('o_p_c_v_m_edit', {'id': o_p_c_v_m.id}) }}">Editer</a>
+                </td>
+                <td>
+                    {{ include('opcvm/_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="13">Cette partie est vide pour le moment.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <center><a class="btn" href="{{ path('o_p_c_v_m_new') }}">Créer une nouvelle OPCVM</a></center>
+            </div>
+</div>
+<hr>
+<br>
+{% endblock %}

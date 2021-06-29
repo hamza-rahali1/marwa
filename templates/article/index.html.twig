@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+
+<!-- Start Working With Us Area -->
+    <div class="working-with-us-area gray-bg">
+        <div class="container"> 
+            <div class="row">
+                <div class="col-md-6 col-12 text-center d-flex align-items-center">
+                    <div class="hire-us-content">
+                        <div class="section-title">
+                            <h4>travaillez avec nous</h4>
+                        </div>
+                        <p>We’ve completed more than <span>100+</span>project for our am azing clients, If you interested?</p>
+                        <a href="#" class="btn hire-us-btn">Hire Us</a>
+                    </div>
+                </div>
+                <div class="col-md-6 d-none d-md-block">
+                    <div class="hire-us-img">
+                        <img src="/assets/img/hire_us.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Working With Us Area -->
+ <!-- Start Icon Box Area -->
+ <hr>
+    <div class="icon-box-area" id="feature">
+        <div class="container">
+            <div class="col-12 text-center align-items-center container">
+                <div class="jumbotron">
+                
+                {{ form_start(form) }}
+                <div class="section-title">
+                    <h4 style="color: #4272d7"> Rechercher dans nos Actualités</h4>
+                </div>
+                <br>
+                <div class="row">
+                    <label><b>Titre :</b></label>
+                    <div class="col">{{ form_row(form.titre)}}</div>
+                    <label><b>Catégorie :</b></label>
+                    <div class="col">{{ form_row(form.categorie)}}</div>
+                    <button class="btn">  Rechercher &nbsp;<i class="fa fa-search" aria-hidden="true"></i></button>
+                </div>
+                <br>
+                {{ form_end(form) }}
+                
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="col-12 text-center align-items-center container">
+    <div class="jumbotron">
+    <div class="section-title">
+        <center><h1>Gérer les Articles</h1></center>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Catégorie</th>
+                <th>Contenu</th>
+                <th>Créer à</th>
+                <th colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.titre }}</td>
+                <td>{{ article.categorie }}</td>
+                <td>{{ article.contenu }}</td>
+                <td>{{ article.createdAt ? article.createdAt|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a class="btn-outline-primary" href="{{ path('article_show', {'id': article.id}) }}"><b>Afficher</b></a>
+                </td>
+                <td>
+                    <a class="btn-outline-primary " href="{{ path('article_edit', {'id': article.id}) }}"><b>Editer</b></a>
+                </td>
+                <td>
+                    {{ include('article/_delete_form.html.twig') }}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">Pas d'articles pour le moment.</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <center><a class="btn" href="{{ path('article_new') }}">Créer un nouveau Article</a></center>
+    </div>
+</div>
+<hr>
+<br>
+{% endblock %}

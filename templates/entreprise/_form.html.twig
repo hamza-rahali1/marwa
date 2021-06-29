@@ -1,0 +1,59 @@
+<div class="col-5 text-center align-items-center container">
+    <div class="jumbotron">
+{{ form_start(form) }}
+
+    <label>Code ICB Général :</label>
+    <div class="col">{{ form_row(form.codeIcbGeneral)}}</div>
+    <label>Secteur General :</label>
+    <div class="col">{{ form_row(form.secteurGeneral)}}</div>
+    <label>Code ICB :</label>
+    <div class="col">{{ form_row(form.codeICB)}}</div>
+    <label>Secteur :</label>
+    <div class="col">{{ form_row(form.secteur)}}</div>
+    <label>Code ISIN :</label>
+    <div class="col">{{ form_row(form.codeISIN)}}</div>
+    <label>Libellé :</label>
+    <div class="col">{{ form_row(form.libelle)}}</div>
+    <label>Titres Admis :</label>
+    <div class="col">{{ form_row(form.titresAdmis)}}</div>
+    <label>Titres Emiss :</label>
+    <div class="col">{{ form_row(form.titresEmiss)}}</div>
+    <label>Score liquidité :</label>
+    <div class="col">{{ form_row(form.score)}}</div>
+    <label>RNPG :</label>
+    <div class="col">{{ form_row(form.rnpg)}}</div>
+    <label>Fpnds propres :</label>
+    <div class="col">{{ form_row(form.fpnds)}}</div>
+    <label>Div 2020 :</label>
+    <div class="col">{{ form_row(form.divvv)}}</div>
+    <label>Cours Au :</label>
+    <div class="col">{{ form_row(form.coursAu)}}</div>
+    <label>Cours Actuel :</label>
+    <div class="col">{{ form_row(form.coursActuel)}}</div>
+    <label>Cours au :</label>
+    <div class="col">{{ form_row(form.cours_at)}}</div>
+    <label>Point forte :</label>
+    <div class="col">{{ form_row(form.ptForte)}}</div>
+    <label>Point faible :</label>
+    <div class="col">{{ form_row(form.ptFaible)}}</div>
+    <label>Actualité :</label>
+    <div class="col">{{ form_row(form.actualite)}}</div>
+    <label>Analyse :</label>
+    <div class="col">{{ form_row(form.analyse)}}</div>
+    <label>Activités et tendance :</label>
+    <div class="col">{{ form_row(form.activite)}}</div>
+    <label>Mécanisme de profit :</label>
+    <div class="col">{{ form_row(form.mecaDeProfit)}}</div>
+
+    <br>
+
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+
+{{ form_end(form) }}
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('entreprise_index') }}">Retour à la liste</a>
+    {% else %}
+    <a href="{{ path('home') }}">Retour à la liste</a>
+    {% endif %}
+     </div>
+</div>

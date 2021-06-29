@@ -1,0 +1,27 @@
+<div class="col-6 text-center align-items-center container">
+    <div class="jumbotron">
+{{ form_start(form) }}
+
+    <label>Titre</label>
+    <div class="col">{{ form_row(form.titre)}}</div>
+    <label>Contenu</label>
+    <div class="col">{{ form_row(form.contenu)}}</div>
+    <label>Catégorie</label>
+    <div class="col">{{ form_row(form.categorie)}}</div>
+    <label>Date Création :<small>( si nécessaire )</small></label>
+    <div class="col">{{ form_row(form.created_at)}}</div>
+
+    <br>
+
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+
+{{ form_end(form) }}
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('article_index') }}">Retour à la liste</a>
+    {% else %}
+    <a href="{{ path('home') }}">Retour à la liste</a>
+    {% endif %}
+     </div>
+</div>
+
+

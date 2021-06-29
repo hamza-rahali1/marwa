@@ -1,0 +1,39 @@
+<div class="col-5 text-center align-items-center container">
+    <div class="jumbotron">
+{{ form_start(form) }}
+
+    <label>Libellé :</label>
+    <div class="col">{{ form_row(form.libelle)}}</div>
+    <label>Société :</label>
+    <div class="col">{{ form_row(form.societe)}}</div>
+    <label>Catégorie :</label>
+    <div class="col">{{ form_row(form.categorie)}}</div>
+    <label>Type :</label>
+    <div class="col">{{ form_row(form.type)}}</div>
+    <label>Orientation :</label>
+    <div class="col">{{ form_row(form.orientation)}}</div>
+    <label>VL au fin d'année   :</label>
+    <div class="col">{{ form_row(form.vlF)}}</div>
+    <label>VL :</label>
+    <div class="col">{{ form_row(form.vlAu)}}</div>
+    <label>AN :</label>
+    <div class="col">{{ form_row(form.an)}}</div>
+    <label>Div :</label>
+    <div class="col">{{ form_row(form.divvv)}}</div>
+    <label>Date Fin d'année :</label>
+    <div class="col">{{ form_row(form._dateF)}}</div>
+    <label>Date VL actuel :</label>
+    <div class="col">{{ form_row(form._dateAu)}}</div>
+    
+    <br>
+
+    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+
+{{ form_end(form) }}
+    {% if is_granted('ROLE_ADMIN') %}
+    <a href="{{ path('entreprise_index') }}">Retour à la liste</a>
+    {% else %}
+    <a href="{{ path('home') }}">Retour à la liste</a>
+    {% endif %}
+     </div>
+</div>
